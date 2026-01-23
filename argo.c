@@ -160,7 +160,33 @@ int parse_int(json *dst, FILE *stream)
 	unexpected(stream);
 	return (-1);
 }
+///////////////////////////////////////////////////
+char	*ft_strdup(const char *str)
+{
+	char	*dest;
+	int		i;
+	int		j;
 
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	dest = malloc((i + 1) * sizeof(char));
+	if (dest == NULL)
+	{
+		return (NULL);
+	}
+	j = 0;
+	while (str[j])
+	{
+		dest[j] = str[j];
+		j++;
+	}
+	dest[j] = '\0';
+	return (dest);
+}
+///////////////////////////////////////////////////////////////
 int parse_string(json *dst, FILE *stream)
 {
 	char	buffer[4096];
@@ -193,7 +219,7 @@ int parse_string(json *dst, FILE *stream)
 	}
 	buffer[i] = '\0';
 	dst->type = STRING;
-	dst->string = strdup(buffer);
+	dst->string = ft_strdup(buffer);
 	return (1);
 }
 
